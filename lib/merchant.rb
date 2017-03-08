@@ -1,6 +1,5 @@
 require 'merchant/version'
-require 'merchant/galatic_to_roman_parser'
-require 'merchant/price_definition_parser'
+require 'merchant/parsers'
 
 module Merchant
   # Your code goes here...
