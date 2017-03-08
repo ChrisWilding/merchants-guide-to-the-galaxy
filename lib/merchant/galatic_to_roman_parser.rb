@@ -3,12 +3,11 @@ module Merchant
     REGEX = /^(.*) is (I|V|X|L|C|D|M)$/
 
     def handles?(str)
-      REGEX.match(str)
+      @matches ||= REGEX.match(str)
     end
 
     def parse(str)
-      matches = REGEX.match(str)
-      return matches[1], matches[2] if matches
+      return @matches[1], @matches[2] if handles?(str)
     end
   end
 end
