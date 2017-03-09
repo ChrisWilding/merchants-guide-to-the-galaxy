@@ -22,8 +22,7 @@ glob prok Gold is 57800 Credits
 glob prok Iron is 782 Credits
 I have no idea what you are talking about'
 
-  # Failing due to rounding error on the price of iron
-  xit 'conducts galatic trade' do
+  it 'conducts galatic trade' do
     result = subject.conduct(inputs)
     expect(result).to eq(expected)
   end

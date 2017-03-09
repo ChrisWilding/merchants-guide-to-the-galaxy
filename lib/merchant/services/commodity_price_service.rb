@@ -16,7 +16,7 @@ module Merchant
       galatic, commodity = @parser.parse(str)
       number = @galatic_to_arabic_service.convert(galatic)
       price = @price_definition_service.price_of(commodity)
-      "#{galatic} #{commodity} is #{price * number} Credits"
+      "#{galatic} #{commodity} is #{Integer(price * number)} Credits"
     end
   end
 end

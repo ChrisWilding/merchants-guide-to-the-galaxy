@@ -1,9 +1,11 @@
+require 'bigdecimal'
+
 module Merchant
   class Commodity
     attr_reader :credits, :name
 
     def initialize(number, name, credits)
-      @credits = credits / number
+      @credits = BigDecimal.new(credits) / BigDecimal.new(number)
       @name = name
     end
   end
