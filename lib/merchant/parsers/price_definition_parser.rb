@@ -9,9 +9,8 @@ module Merchant
     def parse(str)
       return unless handles?(str)
       matches = REGEX.match(str)
-      number_and_commodity = matches[1].split
-      number = number_and_commodity[0...-1].join(' ')
-      commodity = number_and_commodity[-1]
+      *numbers, commodity = matches[1].split
+      number = numbers.join(' ')
       credits = matches[2]
       [number, commodity, credits]
     end
