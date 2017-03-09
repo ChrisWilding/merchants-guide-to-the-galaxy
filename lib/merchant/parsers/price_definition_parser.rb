@@ -7,7 +7,6 @@ module Merchant
     end
 
     def parse(str)
-      return unless can_parse?(str)
       matches = REGEX.match(str)
       *numbers, name = matches[1].split
       number = numbers.join(' ')

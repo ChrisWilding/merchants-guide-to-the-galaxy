@@ -1,6 +1,6 @@
 module Merchant
   class HowManyCreditsParser
-    REGEX = /^how many Credits is(.+)\?$/
+    REGEX = /^how many Credits is (.+)\?$/
 
     def can_parse?(str)
       REGEX =~ str
