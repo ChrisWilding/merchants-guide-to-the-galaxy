@@ -1,7 +1,7 @@
 module Merchant
   class GalaticToRomanService
-    def initialize(mapping = {}, parser = Merchant::GalaticToRomanParser.new)
-      @mapping = mapping
+    def initialize(parser = Merchant::GalaticToRomanParser.new)
+      @lookup = {}
       @parser = parser
     end
 
@@ -11,12 +11,12 @@ module Merchant
 
     def process(str)
       galatic, roman = @parser.parse(str)
-      @mapping[galatic] = roman
+      @lookup[galatic] = roman
       nil
     end
 
     def translate_numeral(str)
-      roman = @mapping[str]
+      roman = @lookup[str]
       raise "Can not translate invalid numeral #{str}" unless roman
       roman
     end

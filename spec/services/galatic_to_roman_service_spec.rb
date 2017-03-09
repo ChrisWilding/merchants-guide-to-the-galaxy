@@ -6,13 +6,13 @@ RSpec.describe Merchant::GalaticToRomanService do
 
     it 'returns false when the parser can not parse' do
       allow(parser).to receive(:can_parse?).and_return(true)
-      service = described_class.new(nil, parser)
+      service = described_class.new(parser)
       expect(service.handles?('FAKE')).to be_truthy
     end
 
     it 'return true when the parser can parse' do
       allow(parser).to receive(:can_parse?).and_return(false)
-      subject = described_class.new(nil, parser)
+      subject = described_class.new(parser)
       expect(subject.handles?('FAKE')).to be_falsey
     end
   end
