@@ -1,12 +1,17 @@
 module Merchant
   class GalaticTrade
     def initialize
-      g_to_r_service = Merchant::GalaticToRomanService.new
-      g_to_a_service = Merchant::GalaticToArabicService.new(g_to_r_service)
-      price_definition_service = Merchant::PriceDefinitionService.new(g_to_a_service)
-      commodity_price_service = Merchant::CommodityPriceService.new(g_to_a_service,
+      galatic_to_roman_service = Merchant::GalaticToRomanService.new
+      galatic_to_arabic_service = Merchant::GalaticToArabicService.new(galatic_to_roman_service)
+      price_definition_service = Merchant::PriceDefinitionService.new(galatic_to_arabic_service)
+      commodity_price_service = Merchant::CommodityPriceService.new(galatic_to_arabic_service,
                                                                     price_definition_service)
-      @services = [g_to_r_service, g_to_a_service, price_definition_service, commodity_price_service]
+      @services = [
+        galatic_to_roman_service,
+        galatic_to_arabic_service,
+        price_definition_service,
+        commodity_price_service
+      ]
     end
 
     def conduct(inputs)
