@@ -20,6 +20,15 @@ RSpec.describe Merchant::GalaticToRomanParser do
     end
   end
 
+  context 'when parse is called twice with different strings' do
+    it 'returns different results' do
+      result1 = subject.parse('glob is I')
+      result2 = subject.parse('prok is V')
+      expect(result1).to eq(%w(glob I))
+      expect(result2).to eq(%w(prok V))
+    end
+  end
+
   context 'when presented with an invalid galatic to roman translation' do
     examples = [
       'glob glob Silver is 34 Credits',
