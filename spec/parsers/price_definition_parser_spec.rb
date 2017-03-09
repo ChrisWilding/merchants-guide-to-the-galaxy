@@ -3,9 +3,9 @@ require 'spec_helper'
 RSpec.describe Merchant::PriceDefinitionParser do
   context 'when preseted with a valid price definition' do
     examples = [
-      ['glob glob Silver is 34 Credits', ['glob glob', 'Silver', '34']],
-      ['glob prok Gold is 57800 Credits', ['glob prok', 'Gold', '57800']],
-      ['pish pish Iron is 3910 Credits', ['pish pish', 'Iron', '3910']]
+      ['glob glob Silver is 34 Credits', ['glob glob', 'Silver', 34]],
+      ['glob prok Gold is 57800 Credits', ['glob prok', 'Gold', 57_800]],
+      ['pish pish Iron is 3910 Credits', ['pish pish', 'Iron', 3910]]
     ]
 
     examples.each do |example, expected|

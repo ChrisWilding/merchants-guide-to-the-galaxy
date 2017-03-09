@@ -2,7 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Merchant::Commodity do
   let(:name) { 'Sausages' }
-  subject { described_class.new(450, 4950, name) }
+  subject { described_class.new(450, name, 4950) }
 
   it 'has a name' do
     expect(subject.name).to eq(name)
