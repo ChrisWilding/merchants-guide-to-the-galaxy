@@ -10,8 +10,8 @@ RSpec.describe Merchant::GalaticToRomanParser do
     ]
 
     examples.each do |example, expected|
-      it "handles? returns true for valid example - #{example}" do
-        expect(subject.handles?(example)).to be_truthy
+      it "can_parse? returns true for valid example - #{example}" do
+        expect(subject.can_parse?(example)).to be_truthy
       end
 
       it "parse returns the galatic and roman numeral for #{example}" do
@@ -33,8 +33,8 @@ RSpec.describe Merchant::GalaticToRomanParser do
     ]
 
     examples.each do |example|
-      it "handles? returns false for invalid examples - #{example}" do
-        expect(subject.handles?(example)).to be_falsey
+      it "can_parse? returns false for invalid examples - #{example}" do
+        expect(subject.can_parse?(example)).to be_falsey
       end
     end
   end
