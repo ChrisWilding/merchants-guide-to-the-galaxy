@@ -1,5 +1,5 @@
 module Merchant
-  class GalaticToRomanTranslationService
+  class GalaticToRomanService
     def initialize(mapping = {}, parser = Merchant::GalaticToRomanParser.new)
       @mapping = mapping
       @parser = parser

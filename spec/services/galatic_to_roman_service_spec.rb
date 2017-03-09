@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Merchant::GalaticToRomanTranslationService do
+RSpec.describe Merchant::GalaticToRomanService do
   let(:parser) { double('parser') }
 
   context 'when the parser can parse the string' do
