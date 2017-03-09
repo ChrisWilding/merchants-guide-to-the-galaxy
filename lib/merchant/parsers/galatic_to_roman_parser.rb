@@ -7,7 +7,7 @@ module Merchant
     end
 
     def parse(str)
-      return @matches[1], @matches[2] if handles?(str)
+      @matches[1, 2] if handles?(str)
     end
   end
 end
