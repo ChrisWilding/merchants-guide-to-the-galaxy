@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Merchant::GalaticToRomanService do
+RSpec.describe Merchant::GalaticToRomanTranslationService do
   subject do
     mapping = {
       'glob' => 'I',

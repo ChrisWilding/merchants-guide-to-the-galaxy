@@ -1,5 +1,5 @@
 module Merchant
-  class GalaticToRomanService
+  class GalaticToRomanTranslationService
     def initialize(mapping)
       @mapping = mapping
     end
