@@ -3,16 +3,15 @@ require 'spec_helper'
 RSpec.describe Merchant::GalaticToRomanService do
   context 'handles?' do
     let(:parser) { double('parser') }
+    subject { described_class.new(parser) }
 
-    it 'returns false when the parser can not parse' do
+    it 'returns true when the parser can parse' do
       allow(parser).to receive(:can_parse?).and_return(true)
-      service = described_class.new(parser)
-      expect(service.handles?('FAKE')).to be_truthy
+      expect(subject.handles?('FAKE')).to be_truthy
     end
 
-    it 'return true when the parser can parse' do
+    it 'return false when the parser can not parse' do
       allow(parser).to receive(:can_parse?).and_return(false)
-      subject = described_class.new(parser)
       expect(subject.handles?('FAKE')).to be_falsey
     end
   end
@@ -31,7 +30,7 @@ RSpec.describe Merchant::GalaticToRomanService do
       end
     end
 
-    it 'transalate a galatic numeral' do
+    it 'transalates a galatic numeral' do
       expect(subject.translate_numeral('pish')).to eq('X')
     end
 
