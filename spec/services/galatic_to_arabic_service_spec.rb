@@ -2,11 +2,11 @@ require 'spec_helper'
 
 RSpec.describe Merchant::GalaticToArabicService do
   subject do
-    translator = Merchant::GalaticToRomanService.new
+    galatic_to_roman_service = Merchant::GalaticToRomanService.new
     ['glob is I', 'prok is V', 'pish is X', 'tegj is L'].each do |example|
-      translator.process(example)
+      galatic_to_roman_service.process(example)
     end
-    described_class.new(translator)
+    described_class.new(galatic_to_roman_service)
   end
 
   it 'converts galatic numerals to arabic' do
@@ -18,20 +18,17 @@ RSpec.describe Merchant::GalaticToArabicService do
     expect(result).to eq('pish tegj glob glob is 42')
   end
 
-  context 'when the parser can parse the string' do
+  context 'handles?' do
     let(:parser) { double('parser') }
-    it 'handles? method returns true' do
-      allow(parser).to receive(:can_parse?).and_return(true)
-      service = described_class.new(nil, parser)
-      expect(service.handles?('FAKE')).to be_truthy
-    end
-  end
+    subject { described_class.new(nil, parser) }
 
-  context 'when the parser can not parse the string' do
-    let(:parser) { double('parser') }
-    it 'handles? method returns true' do
+    it 'returns true when the parser can parse' do
+      allow(parser).to receive(:can_parse?).and_return(true)
+      expect(subject.handles?('FAKE')).to be_truthy
+    end
+
+    it 'return false when the parser can not parse' do
       allow(parser).to receive(:can_parse?).and_return(false)
-      subject = described_class.new(nil, parser)
       expect(subject.handles?('FAKE')).to be_falsey
     end
   end
