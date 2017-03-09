@@ -1,29 +1,26 @@
 require 'spec_helper'
 
 RSpec.describe Merchant::GalaticToRomanService do
-  let(:parser) { double('parser') }
+  context 'handles?' do
+    let(:parser) { double('parser') }
 
-  context 'when the parser can parse the string' do
-    it 'handles? method returns true' do
+    it 'returns false when the parser can not parse' do
       allow(parser).to receive(:can_parse?).and_return(true)
-      service = described_class.new({}, parser)
+      service = described_class.new(nil, parser)
       expect(service.handles?('FAKE')).to be_truthy
     end
-  end
 
-  context 'when the parser can not parse the string' do
-    it 'handles? method returns true' do
+    it 'return true when the parser can parse' do
       allow(parser).to receive(:can_parse?).and_return(false)
-      subject = described_class.new({}, parser)
+      subject = described_class.new(nil, parser)
       expect(subject.handles?('FAKE')).to be_falsey
     end
   end
 
-  context 'when process is called' do
-    it 'calls the parse on the parser' do
-      expect(parser).to receive(:parse).with('TEST').and_return(%w(a b))
-      service = described_class.new({}, parser)
-      service.process('TEST')
+  context 'process' do
+    it 'returns nil' do
+      result = subject.process('glob is I')
+      expect(result).to be_nil
     end
   end
 

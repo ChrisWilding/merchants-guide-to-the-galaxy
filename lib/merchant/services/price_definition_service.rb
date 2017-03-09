@@ -15,6 +15,7 @@ module Merchant
       number = @galatic_to_arabic_service.convert(galatic_numerals)
       commodity = Merchant::Commodity.new(number, name, credits)
       @lookup[commodity.name] = commodity.credits
+      nil
     end
 
     def price_of(name)

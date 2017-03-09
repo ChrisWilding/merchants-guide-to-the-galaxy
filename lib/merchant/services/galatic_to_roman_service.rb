@@ -12,6 +12,7 @@ module Merchant
     def process(str)
       galatic, roman = @parser.parse(str)
       @mapping[galatic] = roman
+      nil
     end
 
     def translate_numeral(str)
