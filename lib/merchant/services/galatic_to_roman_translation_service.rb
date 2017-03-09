@@ -1,15 +1,28 @@
 module Merchant
   class GalaticToRomanTranslationService
-    def initialize(mapping)
+    def initialize(mapping = {}, parser = Merchant::GalaticToRomanParser.new)
       @mapping = mapping
+      @parser = parser
     end
 
-    def convert(str)
-      galatic_numerals = str.split
-      galatic_numerals.map do |galatic_numeral|
-        roman_numeral = @mapping[galatic_numeral]
-        raise "Invalid galatic numeral #{galatic_numeral}" unless roman_numeral
-        roman_numeral
+    def handles?(str)
+      @parser.can_parse?(str)
+    end
+
+    def process(str)
+      galatic, roman = @parser.parse(str)
+      @mapping[galatic] = roman
+    end
+
+    def translate_numeral(str)
+      roman = @mapping[str]
+      raise "Can not translate invalid numeral #{str}" unless roman
+      roman
+    end
+
+    def translate_numerals(str)
+      str.split.collect do |numeral|
+        translate_numeral(numeral)
       end.join
     end
   end
