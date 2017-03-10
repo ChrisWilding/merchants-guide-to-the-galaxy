@@ -16,14 +16,14 @@ RSpec.describe Merchant::PriceDefinitionParser do
       end
 
       context 'parse' do
-        it "returns the galatic number, commodity and credits for #{example}" do
+        it "returns galactic number, commodity and credits for #{example}" do
           expect(subject.parse(example)).to eq(expected)
         end
       end
     end
   end
 
-  context 'when presented with an invalid galatic to roman translation' do
+  context 'when presented with an invalid galactic to roman translation' do
     examples = [
       'glob is I',
       'prok is V',

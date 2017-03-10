@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Merchant::GalaticTrade do
+RSpec.describe Merchant::GalacticTrade do
   inputs = [
     'glob is I',
     'prok is V',
@@ -22,7 +22,7 @@ glob prok Gold is 57800 Credits
 glob prok Iron is 782 Credits
 I have no idea what you are talking about'
 
-  it 'conducts galatic trade' do
+  it 'conducts galactic trade' do
     result = subject.conduct(inputs)
     expect(result).to eq(expected)
   end

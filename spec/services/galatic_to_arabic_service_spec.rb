@@ -1,19 +1,19 @@
 require 'spec_helper'
 
-RSpec.describe Merchant::GalaticToArabicService do
+RSpec.describe Merchant::GalacticToArabicService do
   subject do
-    galatic_to_roman_service = Merchant::GalaticToRomanService.new
+    galactic_to_roman_service = Merchant::GalacticToRomanService.new
     ['glob is I', 'prok is V', 'pish is X', 'tegj is L'].each do |example|
-      galatic_to_roman_service.process(example)
+      galactic_to_roman_service.process(example)
     end
-    described_class.new(galatic_to_roman_service)
+    described_class.new(galactic_to_roman_service)
   end
 
-  it 'converts galatic numerals to arabic' do
+  it 'converts galactic numerals to arabic' do
     expect(subject.convert('tegj pish prok glob')).to eq(66)
   end
 
-  it 'process returns how much the galatic numeral is' do
+  it 'process returns how much the galactic numeral is' do
     result = subject.process('how much is pish tegj glob glob ?')
     expect(result).to eq('pish tegj glob glob is 42')
   end

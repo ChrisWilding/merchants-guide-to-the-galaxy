@@ -2,17 +2,17 @@ require 'spec_helper'
 
 RSpec.describe Merchant::CommodityPriceService do
   subject do
-    galatic_to_roman_service = Merchant::GalaticToRomanService.new
-    galatic_to_roman_service.process('glob is I')
-    galatic_to_roman_service.process('prok is V')
-    galatic_to_arabic_service = Merchant::GalaticToArabicService.new(
-      galatic_to_roman_service
+    galactic_to_roman_service = Merchant::GalacticToRomanService.new
+    galactic_to_roman_service.process('glob is I')
+    galactic_to_roman_service.process('prok is V')
+    galactic_to_arabic_service = Merchant::GalacticToArabicService.new(
+      galactic_to_roman_service
     )
     price_definition_service = Merchant::PriceDefinitionService.new(
-      galatic_to_arabic_service
+      galactic_to_arabic_service
     )
     price_definition_service.process('glob glob Silver is 34 Credits')
-    described_class.new(galatic_to_arabic_service, price_definition_service)
+    described_class.new(galactic_to_arabic_service, price_definition_service)
   end
 
   it 'process calculates the unit price in credits for a commodity' do

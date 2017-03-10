@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Merchant::GalaticToRomanService do
+RSpec.describe Merchant::GalacticToRomanService do
   context 'handles?' do
     let(:parser) { double('parser') }
     subject { described_class.new(parser) }
@@ -30,17 +30,17 @@ RSpec.describe Merchant::GalaticToRomanService do
       end
     end
 
-    it 'transalates a galatic numeral' do
+    it 'transalates a galactic numeral' do
       expect(subject.translate_numeral('pish')).to eq('X')
     end
 
-    it 'transalates a string of galatic numeral' do
+    it 'transalates a string of galactic numeral' do
       str = 'pish tegj prok glob'
       expect(subject.translate_numerals(str)).to eq('XLVI')
     end
   end
 
-  it 'raises an error when it can not translate a galatic numeral' do
+  it 'raises an error when it can not translate a galactic numeral' do
     expect { subject.translate_numeral('BANG') }.to raise_error(
       'Can not translate invalid numeral BANG'
     )

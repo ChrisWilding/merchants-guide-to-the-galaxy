@@ -7,7 +7,7 @@ glob prok Gold is 57800 Credits
 glob prok Iron is 782 Credits
 I have no idea what you are talking about'
 
-  it 'loads the file and conducts the galatic trade' do
+  it 'loads the file and conducts the galactic trade' do
     ARGV.replace(["#{File.dirname(__FILE__)}/../fixtures/input.txt"])
     expect(STDOUT).to receive(:puts).with(expected)
     subject.run

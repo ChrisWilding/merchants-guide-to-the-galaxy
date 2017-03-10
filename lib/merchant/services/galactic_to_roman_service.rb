@@ -1,6 +1,6 @@
 module Merchant
-  class GalaticToRomanService
-    def initialize(parser = Merchant::GalaticToRomanParser.new)
+  class GalacticToRomanService
+    def initialize(parser = Merchant::GalacticToRomanParser.new)
       @lookup = {}
       @parser = parser
     end
@@ -10,8 +10,8 @@ module Merchant
     end
 
     def process(str)
-      galatic, roman = @parser.parse(str)
-      @lookup[galatic] = roman
+      galactic, roman = @parser.parse(str)
+      @lookup[galactic] = roman
       nil
     end
 

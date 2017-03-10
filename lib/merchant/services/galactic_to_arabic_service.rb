@@ -1,5 +1,5 @@
 module Merchant
-  class GalaticToArabicService
+  class GalacticToArabicService
     def initialize(translator, parser = HowMuchParser.new)
       @converter = RomanToArabicConverter.new
       @parser = parser

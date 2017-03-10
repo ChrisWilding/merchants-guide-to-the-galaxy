@@ -16,7 +16,7 @@ RSpec.describe Merchant::HowManyCreditsParser do
       end
 
       context 'parse' do
-        it "returns the galatic numerals and commodity name for #{example}" do
+        it "returns the galactic numerals and commodity name for #{example}" do
           expect(subject.parse(example)).to eq(expected)
         end
       end

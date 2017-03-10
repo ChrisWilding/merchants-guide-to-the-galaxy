@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-RSpec.describe Merchant::GalaticToRomanParser do
-  context 'when preseted with a valid galatic to roman translation' do
+RSpec.describe Merchant::GalacticToRomanParser do
+  context 'when preseted with a valid galactic to roman translation' do
     examples = [
       ['glob is I', %w(glob I)],
       ['prok is V', %w(prok V)],
@@ -14,7 +14,7 @@ RSpec.describe Merchant::GalaticToRomanParser do
         expect(subject.can_parse?(example)).to be_truthy
       end
 
-      it "parse returns the galatic and roman numeral for #{example}" do
+      it "parse returns the galactic and roman numeral for #{example}" do
         expect(subject.parse(example)).to eq(expected)
       end
     end
@@ -29,7 +29,7 @@ RSpec.describe Merchant::GalaticToRomanParser do
     end
   end
 
-  context 'when presented with an invalid galatic to roman translation' do
+  context 'when presented with an invalid galactic to roman translation' do
     examples = [
       'glob glob Silver is 34 Credits',
       'glob prok Gold is 57800 Credits',

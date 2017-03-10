@@ -1,15 +1,15 @@
 module Merchant
-  class GalaticTrade
+  class GalacticTrade
     def initialize
-      @galatic_to_roman_service = GalaticToRomanService.new
-      @galatic_to_arabic_service = GalaticToArabicService.new(
-        @galatic_to_roman_service
+      @galactic_to_roman_service = GalacticToRomanService.new
+      @galactic_to_arabic_service = GalacticToArabicService.new(
+        @galactic_to_roman_service
       )
       @price_definition_service = PriceDefinitionService.new(
-        @galatic_to_arabic_service
+        @galactic_to_arabic_service
       )
       @commodity_price_service = CommodityPriceService.new(
-        @galatic_to_arabic_service, @price_definition_service
+        @galactic_to_arabic_service, @price_definition_service
       )
     end
 
@@ -29,8 +29,8 @@ module Merchant
 
     def services
       @services ||= [
-        @galatic_to_roman_service,
-        @galatic_to_arabic_service,
+        @galactic_to_roman_service,
+        @galactic_to_arabic_service,
         @price_definition_service,
         @commodity_price_service
       ]

@@ -8,7 +8,7 @@ RSpec.describe Merchant::HowMuchParser do
       expect(subject.can_parse?(example)).to be_truthy
     end
 
-    it 'parse returns the galatic numeral part of the question' do
+    it 'parse returns the galactic numeral part of the question' do
       expect(subject.parse(example)).to eq('pish tegj glob glob')
     end
   end

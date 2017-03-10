@@ -1,5 +1,5 @@
 module Merchant
-  class GalaticToRomanParser
+  class GalacticToRomanParser
     REGEX = /^(.*) is (I|V|X|L|C|D|M)$/
 
     def can_parse?(str)

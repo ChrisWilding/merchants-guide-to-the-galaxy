@@ -8,5 +8,5 @@ require 'merchant/version'
   end
 end
 
-require 'merchant/galatic_trade'
+require 'merchant/galactic_trade'
 require 'merchant/cli'

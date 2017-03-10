@@ -3,8 +3,8 @@ module Merchant
     def run
       if ARGV.length == 1
         lines = File.readlines(ARGV[0]).collect(&:strip)
-        galatic_trade = GalaticTrade.new
-        puts galatic_trade.conduct(lines)
+        galactic_trade = GalacticTrade.new
+        puts galactic_trade.conduct(lines)
       else
         puts 'Usage: merchant ./path/to/input.txt'
       end
