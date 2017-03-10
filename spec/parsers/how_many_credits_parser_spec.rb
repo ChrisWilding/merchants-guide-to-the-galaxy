@@ -9,12 +9,16 @@ RSpec.describe Merchant::HowManyCreditsParser do
     ]
 
     examples.each do |example, expected|
-      it "can_parse? returns true for valid example - #{example}" do
-        expect(subject.can_parse?(example)).to be_truthy
+      context 'can_parse?' do
+        it "can_parse? returns true for valid example - #{example}" do
+          expect(subject.can_parse?(example)).to be_truthy
+        end
       end
 
-      it "parse returns the galatic numerals and commodity name for #{example}" do
-        expect(subject.parse(example)).to eq(expected)
+      context 'parse' do
+        it "returns the galatic numerals and commodity name for #{example}" do
+          expect(subject.parse(example)).to eq(expected)
+        end
       end
     end
   end

@@ -20,7 +20,9 @@ RSpec.describe Merchant::PriceDefinitionService do
     subject do
       galatic_to_roman_service = Merchant::GalaticToRomanService.new
       galatic_to_roman_service.process('glob is I')
-      galatic_to_arabic_service = Merchant::GalaticToArabicService.new(galatic_to_roman_service)
+      galatic_to_arabic_service = Merchant::GalaticToArabicService.new(
+        galatic_to_roman_service
+      )
       described_class.new(galatic_to_arabic_service)
     end
     let!(:result) { subject.process('glob glob Silver is 34 Credits') }

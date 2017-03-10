@@ -41,6 +41,8 @@ RSpec.describe Merchant::GalaticToRomanService do
   end
 
   it 'raises an error when it can not translate a galatic numeral' do
-    expect { subject.translate_numeral('BANG') }.to raise_error('Can not translate invalid numeral BANG')
+    expect { subject.translate_numeral('BANG') }.to raise_error(
+      'Can not translate invalid numeral BANG'
+    )
   end
 end

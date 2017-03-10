@@ -9,12 +9,16 @@ RSpec.describe Merchant::PriceDefinitionParser do
     ]
 
     examples.each do |example, expected|
-      it "can_parse? returns true for valid example - #{example}" do
-        expect(subject.can_parse?(example)).to be_truthy
+      context 'can_parse?' do
+        it "can_parse? returns true for valid example - #{example}" do
+          expect(subject.can_parse?(example)).to be_truthy
+        end
       end
 
-      it "parse returns the galatic number, commodity, and credits for #{example}" do
-        expect(subject.parse(example)).to eq(expected)
+      context 'parse' do
+        it "returns the galatic number, commodity and credits for #{example}" do
+          expect(subject.parse(example)).to eq(expected)
+        end
       end
     end
   end

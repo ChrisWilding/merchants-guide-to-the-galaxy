@@ -31,6 +31,8 @@ RSpec.describe Merchant::RomanToArabicConverter do
   end
 
   it 'raises an error converting invalid roman numerals' do
-    expect { subject.convert('MMMM') }.to raise_error('Can not convert roman numeral MMMM to arabic')
+    expect { subject.convert('MMMM') }.to raise_error(
+      'Can not convert roman numeral MMMM to arabic'
+    )
   end
 end

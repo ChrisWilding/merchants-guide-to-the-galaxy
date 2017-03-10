@@ -1,6 +1,7 @@
 module Merchant
   class PriceDefinitionService
-    def initialize(galatic_to_arabic_service, parser = Merchant::PriceDefinitionParser.new)
+    def initialize(galatic_to_arabic_service,
+                   parser = PriceDefinitionParser.new)
       @galatic_to_arabic_service = galatic_to_arabic_service
       @lookup = {}
       @parser = parser
