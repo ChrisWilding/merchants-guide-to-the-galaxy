@@ -16,10 +16,10 @@ RSpec.describe Merchant::Parser do
     expect(price_definition.credits).to eq('34')
   end
 
-  it 'parses a translation definition' do
+  it 'parses a translation query' do
     parser = described_class.new('how much is pish tegj glob glob ?')
-    translation_definition = parser.parse.first
-    expect(translation_definition.galactic).to eq('pish tegj glob glob')
+    translation_query = parser.parse.first
+    expect(translation_query.galactic).to eq('pish tegj glob glob')
   end
 
   it 'parses a price query' do
