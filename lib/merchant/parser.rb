@@ -36,6 +36,10 @@ module Merchant
       ast
     end
 
+    private
+
+    attr_reader :scanner
+
     def parse_translation_definition
       galactic = scanner.scan_until(IS).chomp(IS.source)
       roman = scanner.scan(ROMAN).strip
@@ -68,9 +72,5 @@ module Merchant
       scanner.skip_until(NEWLINE_OR_EOS)
       ast << UnknownDefinitionOrQuery.new
     end
-
-    private
-
-    attr_reader :scanner
   end
 end
