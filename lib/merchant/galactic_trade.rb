@@ -8,7 +8,7 @@ module Merchant
       @price_definition_service = PriceDefinitionService.new(
         @galactic_to_arabic_service
       )
-      @commodity_price_service = PriceQueryService.new(
+      @price_query_service = PriceQueryService.new(
         @galactic_to_arabic_service, @price_definition_service
       )
     end
@@ -33,7 +33,7 @@ module Merchant
         @galactic_to_roman_service,
         @galactic_to_arabic_service,
         @price_definition_service,
-        @commodity_price_service
+        @price_query_service
       ]
     end
   end
