@@ -1,20 +1,17 @@
 module Merchant
   class PriceDefinitionService
-    def initialize(galactic_to_arabic_service,
-                   parser = PriceDefinitionParser.new)
+    def initialize(galactic_to_arabic_service)
       @galactic_to_arabic_service = galactic_to_arabic_service
       @lookup = {}
-      @parser = parser
     end
 
-    def handles?(str)
-      @parser.can_parse?(str)
+    def handles?(node)
+      node.is_a?(PriceDefinition)
     end
 
-    def process(str)
-      galactic_numerals, name, credits = @parser.parse(str)
-      number = @galactic_to_arabic_service.convert(galactic_numerals)
-      commodity = Merchant::Commodity.new(number, name, credits)
+    def process(node)
+      arabic = @galactic_to_arabic_service.convert(node.galactic)
+      commodity = Merchant::Commodity.new(arabic, node.commodity, node.credits)
       @lookup[commodity.name] = commodity.credits
       nil
     end

@@ -13,11 +13,12 @@ module Merchant
       )
     end
 
-    def conduct(inputs)
-      inputs.each_with_object([]) do |input, out|
-        service = services.find { |s| s.handles?(input) }
+    def conduct(input)
+      ast = Parser.new(input).parse
+      ast.each_with_object([]) do |node, out|
+        service = services.find { |s| s.handles?(node) }
         begin
-          result = service.process(input)
+          result = service.process(node)
           out << result if result
         rescue
           out << 'I have no idea what you are talking about'

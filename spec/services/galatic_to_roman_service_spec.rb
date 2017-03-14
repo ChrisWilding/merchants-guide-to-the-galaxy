@@ -2,39 +2,39 @@ require 'spec_helper'
 
 RSpec.describe Merchant::GalacticToRomanService do
   context 'handles?' do
-    let(:parser) { double('parser') }
-    subject { described_class.new(parser) }
-
-    it 'returns true when the parser can parse' do
-      allow(parser).to receive(:can_parse?).and_return(true)
-      expect(subject.handles?('FAKE')).to be_truthy
+    it 'returns true for TranslationDefinition nodes' do
+      node = Merchant::TranslationDefinition.new('glob', 'I')
+      expect(subject.handles?(node)).to be_truthy
     end
 
-    it 'return false when the parser can not parse' do
-      allow(parser).to receive(:can_parse?).and_return(false)
-      expect(subject.handles?('FAKE')).to be_falsey
+    it 'returns false for other nodes' do
+      node = Merchant::UnknownDefinitionOrQuery.new
+      expect(subject.handles?(node)).to be_falsey
     end
   end
 
-  context 'process' do
-    it 'returns nil' do
-      result = subject.process('glob is I')
-      expect(result).to be_nil
-    end
+  it 'process returns nil' do
+    node = Merchant::TranslationDefinition.new('glob', 'I')
+    expect(subject.process(node)).to be_nil
   end
 
-  context 'when it has processed the examples' do
+  context 'when it has processed the nodes' do
     before do
-      ['glob is I', 'prok is V', 'pish is X', 'tegj is L'].each do |example|
-        subject.process(example)
-      end
+      nodes = [
+        Merchant::TranslationDefinition.new('glob', 'I'),
+        Merchant::TranslationDefinition.new('prok', 'V'),
+        Merchant::TranslationDefinition.new('pish', 'X'),
+        Merchant::TranslationDefinition.new('tegj', 'L')
+      ]
+
+      nodes.each { |node| subject.process(node) }
     end
 
     it 'transalates a galactic numeral' do
       expect(subject.translate_numeral('pish')).to eq('X')
     end
 
-    it 'transalates a string of galactic numeral' do
+    it 'transalates a string of galactic numerals' do
       str = 'pish tegj prok glob'
       expect(subject.translate_numerals(str)).to eq('XLVI')
     end

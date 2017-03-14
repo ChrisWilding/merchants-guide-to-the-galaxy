@@ -1,8 +1,7 @@
 module Merchant
   class GalacticToArabicService
-    def initialize(translator, parser = HowMuchParser.new)
+    def initialize(translator)
       @converter = RomanToArabicConverter.new
-      @parser = parser
       @translator = translator
     end
 
@@ -11,14 +10,14 @@ module Merchant
       @converter.convert(translated)
     end
 
-    def handles?(str)
-      @parser.can_parse?(str)
+    def handles?(node)
+      node.is_a?(TranslationQuery)
     end
 
-    def process(str)
-      numerals = @parser.parse(str)
-      converted = convert(numerals)
-      "pish tegj glob glob is #{converted}"
+    def process(node)
+      galactic = node.galactic
+      arabic = convert(galactic)
+      "#{galactic} is #{arabic}"
     end
   end
 end

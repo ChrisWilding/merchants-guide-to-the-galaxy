@@ -2,9 +2,9 @@ module Merchant
   class CLI
     def run
       if ARGV.length == 1
-        lines = File.readlines(ARGV[0]).collect(&:strip)
+        input = File.read(ARGV[0])
         galactic_trade = GalacticTrade.new
-        puts galactic_trade.conduct(lines)
+        puts galactic_trade.conduct(input)
       else
         puts 'Usage: merchant ./path/to/input.txt'
       end

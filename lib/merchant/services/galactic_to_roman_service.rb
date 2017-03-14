@@ -1,17 +1,15 @@
 module Merchant
   class GalacticToRomanService
-    def initialize(parser = Merchant::GalacticToRomanParser.new)
+    def initialize
       @lookup = {}
-      @parser = parser
     end
 
-    def handles?(str)
-      @parser.can_parse?(str)
+    def handles?(node)
+      node.is_a?(TranslationDefinition)
     end
 
-    def process(str)
-      galactic, roman = @parser.parse(str)
-      @lookup[galactic] = roman
+    def process(node)
+      @lookup[node.galactic] = node.roman
       nil
     end
 

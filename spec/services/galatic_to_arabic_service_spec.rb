@@ -3,33 +3,44 @@ require 'spec_helper'
 RSpec.describe Merchant::GalacticToArabicService do
   subject do
     galactic_to_roman_service = Merchant::GalacticToRomanService.new
-    ['glob is I', 'prok is V', 'pish is X', 'tegj is L'].each do |example|
-      galactic_to_roman_service.process(example)
-    end
+    nodes = [
+      Merchant::TranslationDefinition.new('glob', 'I'),
+      Merchant::TranslationDefinition.new('prok', 'V'),
+      Merchant::TranslationDefinition.new('pish', 'X'),
+      Merchant::TranslationDefinition.new('tegj', 'L')
+    ]
+    nodes.each { |node| galactic_to_roman_service.process(node) }
     described_class.new(galactic_to_roman_service)
+  end
+
+  context 'handles?' do
+    it 'returns true for TranslationQuery nodes' do
+      node = Merchant::TranslationQuery.new('glob')
+      expect(subject.handles?(node)).to be_truthy
+    end
+
+    it 'returns false for other nodes' do
+      node = Merchant::UnknownDefinitionOrQuery.new
+      expect(subject.handles?(node)).to be_falsey
+    end
   end
 
   it 'converts galactic numerals to arabic' do
     expect(subject.convert('tegj pish prok glob')).to eq(66)
   end
 
-  it 'process returns how much the galactic numeral is' do
-    result = subject.process('how much is pish tegj glob glob ?')
-    expect(result).to eq('pish tegj glob glob is 42')
-  end
-
-  context 'handles?' do
-    let(:parser) { double('parser') }
-    subject { described_class.new(nil, parser) }
-
-    it 'returns true when the parser can parse' do
-      allow(parser).to receive(:can_parse?).and_return(true)
-      expect(subject.handles?('FAKE')).to be_truthy
-    end
-
-    it 'return false when the parser can not parse' do
-      allow(parser).to receive(:can_parse?).and_return(false)
-      expect(subject.handles?('FAKE')).to be_falsey
+  [
+    [
+      Merchant::TranslationQuery.new('pish tegj glob glob'),
+      'pish tegj glob glob is 42'
+    ],
+    [
+      Merchant::TranslationQuery.new('glob glob'),
+      'glob glob is 2'
+    ]
+  ].each do |node, expected|
+    it 'process returns the galactic numeral value in arabic numerals' do
+      expect(subject.process(node)).to eq(expected)
     end
   end
 end

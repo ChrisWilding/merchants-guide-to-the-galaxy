@@ -1,22 +1,18 @@
 module Merchant
   class CommodityPriceService
-    def initialize(galactic_to_arabic_service,
-                   price_definition_service,
-                   parser = Merchant::HowManyCreditsParser.new)
+    def initialize(galactic_to_arabic_service, price_definition_service)
       @galactic_to_arabic_service = galactic_to_arabic_service
       @price_definition_service = price_definition_service
-      @parser = parser
     end
 
-    def handles?(str)
-      @parser.can_parse?(str)
+    def handles?(node)
+      node.is_a?(PriceQuery)
     end
 
-    def process(str)
-      galactic, commodity = @parser.parse(str)
-      number = @galactic_to_arabic_service.convert(galactic)
-      price = @price_definition_service.price_of(commodity)
-      "#{galactic} #{commodity} is #{Integer(price * number)} Credits"
+    def process(node)
+      arabic = @galactic_to_arabic_service.convert(node.galactic)
+      price = @price_definition_service.price_of(node.commodity)
+      "#{node.galactic} #{node.commodity} is #{Integer(arabic * price)} Credits"
     end
   end
 end
