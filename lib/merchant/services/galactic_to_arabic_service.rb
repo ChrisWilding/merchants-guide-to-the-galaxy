@@ -1,12 +1,12 @@
 module Merchant
   class GalacticToArabicService
-    def initialize(translator)
+    def initialize(galactic_to_roman_service)
       @converter = RomanToArabicConverter.new
-      @translator = translator
+      @galactic_to_roman_service = galactic_to_roman_service
     end
 
     def convert(numerals)
-      translated = @translator.translate_numerals(numerals)
+      translated = @galactic_to_roman_service.translate_numerals(numerals)
       @converter.convert(translated)
     end
 
