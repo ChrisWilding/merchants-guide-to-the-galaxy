@@ -1,5 +1,5 @@
 module Merchant
-  class CommodityPriceService
+  class PriceQueryService
     def initialize(galactic_to_arabic_service, price_definition_service)
       @galactic_to_arabic_service = galactic_to_arabic_service
       @price_definition_service = price_definition_service

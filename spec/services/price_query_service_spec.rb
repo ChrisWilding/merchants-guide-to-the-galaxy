@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe Merchant::CommodityPriceService do
+RSpec.describe Merchant::PriceQueryService do
   subject do
     galactic_to_roman_service = Merchant::GalacticToRomanService.new
     galactic_to_roman_service.process(
