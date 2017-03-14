@@ -28,7 +28,7 @@ module Merchant
     def parse
       default = -> { :parse_unknown_definition_or_query }
       until scanner.eos?
-        method, = MAPPING.find(default) do |_method, regexp|
+        method, = MAPPING.find(default) do |_, regexp|
           scanner.match?(regexp)
         end
         send(method)
