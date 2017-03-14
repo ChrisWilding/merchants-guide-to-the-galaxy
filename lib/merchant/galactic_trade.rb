@@ -17,12 +17,8 @@ module Merchant
       ast = Parser.new(input).parse
       ast.each_with_object([]) do |node, out|
         service = services.find { |s| s.handles?(node) }
-        begin
-          result = service.process(node)
-          out << result if result
-        rescue
-          out << 'I have no idea what you are talking about'
-        end
+        result = service.process(node)
+        out << result if result
       end.join("\n")
     end
 
@@ -33,7 +29,8 @@ module Merchant
         @galactic_to_roman_service,
         @galactic_to_arabic_service,
         @price_definition_service,
-        @price_query_service
+        @price_query_service,
+        UnknownDefinitionOrQueryService.new
       ]
     end
   end
