@@ -3,7 +3,7 @@ require 'merchant/models/commodity'
 require 'merchant/parser'
 require 'merchant/version'
 
-%w(nodes parsers services).each do |dir|
+%w(nodes services).each do |dir|
   Dir["#{File.dirname(__FILE__)}/merchant/#{dir}/*.rb"].each do |file|
     require file
   end
