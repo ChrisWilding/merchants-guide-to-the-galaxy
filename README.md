@@ -36,7 +36,7 @@ roman numeral L that in the future C, D and M may be provided and handled this
 appropriately.
 
 As there are a limited number of roman numerals the numerals 1-3999 are
-pre-calculated. Validation is the completed as a simple lookup where if the
+pre-calculated. Validation is then completed as a simple lookup where if the
 numeral is not present in the pre-calculated hash then it is considered
 invalid.
 
@@ -60,6 +60,6 @@ integers which may result in data loss. Further requirements to understand how
 fractional galactic credits are represent would be required to improve the handling here.
 
 Roman numeral to arabic conversions do not require any knowledge of galactic
-trade so could be extracted out to a separate module or gem but for convience
-has been kept in this gem as a convert class.
+trade so could be extracted out to a separate module or gem but for convenience
+has been kept in this gem as a converter class.
 
