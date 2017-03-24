@@ -2,6 +2,7 @@ require 'spec_helper'
 
 RSpec.describe Merchant::CLI do
   expected = 'pish tegj glob glob is 42
+atre mpor hnga is 1600
 glob prok Silver is 68 Credits
 glob prok Gold is 57800 Credits
 glob prok Iron is 782 Credits
