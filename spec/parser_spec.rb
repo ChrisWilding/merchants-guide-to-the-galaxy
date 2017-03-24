@@ -39,6 +39,14 @@ RSpec.describe Merchant::Parser do
     )
   end
 
+  it 'parsers a commodity conversion' do
+    parser = described_class.new('how many Silver is glob Gold ?')
+    commodity_conversion = parser.parse.first
+    expect(commodity_conversion.from_commodity).to eq('Silver')
+    expect(commodity_conversion.to_commodity).to eq('Gold')
+    expect(commodity_conversion.galactic).to eq('glob')
+  end
+
   it 'parses multiple items' do
     parser = described_class.new("tegj is L\nglob glob Silver is 34 Credits")
     translation_definition, price_definition = parser.parse

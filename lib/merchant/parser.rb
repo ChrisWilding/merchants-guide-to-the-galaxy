@@ -2,6 +2,7 @@ require 'strscan'
 
 module Merchant
   class Parser
+    COMMODITY_CONVERSION = /how many .* is .* \?/
     NEWLINE = /\n/
     NEWLINE_OR_EOS = /#{NEWLINE}|$/
     PRICE_DEFINITION = /^.* is \d+ Credits$/
@@ -15,7 +16,8 @@ module Merchant
       parse_price_definition: PRICE_DEFINITION,
       parse_price_query: PRICE_QUERY,
       parse_translation_definition: TRANSLATION_DEFINITION,
-      parse_translation_query: TRANSLATION_QUERY
+      parse_translation_query: TRANSLATION_QUERY,
+      parse_commodity_conversion: COMMODITY_CONVERSION
     }.freeze
 
     attr_reader :ast
@@ -72,5 +74,14 @@ module Merchant
       scanner.skip_until(NEWLINE_OR_EOS)
       ast << UnknownDefinitionOrQuery.new
     end
+     def parse_commodity_conversion
+      scanner.skip(/how many /)
+      from_commodity = scanner.scan_until(IS).chomp(IS.source)
+      *galactic, to_commodity = scanner.scan_until(/\?/).chomp('?').split
+      ast << CommodityConversion.new(
+        from_commodity, to_commodity, galactic.join(' ')
+      )
+      scanner.skip(NEWLINE_OR_EOS)
+     end
   end
 end
