@@ -42,17 +42,22 @@ invalid.
 
 # Design
 The CLI class takes responsibility for dealing external environment
-  * it checks and parses ARGV
-  * it reads and preprocessing the input before passing on to the GalacticTrade class
+* it checks and parses ARGV
+* it reads and preprocessing the input before passing on to the GalacticTrade class
 
 The GalacticTrade class is responsible for setting up the service objects and
 processing the inputs
 
+Individual line parser object have now been combined into a single parser that uses
+the standard library string scanner. Advantage is that all parser rules are in a
+single well defined place. However, this may become too complex with many things to
+parse. An unknown definition or query statement in the input is now generated as a node
+in the output from the parser.
+
 There is a service object to represent handling each kind of input statement of
-question. Each service delegates to a parser to work out if it can handle a
-question or statement and to parse the input. The service objects store and
-process the result of parsing the input and where appropriate provide methods
-for other services to query that parsed information.
+question. Each service inspects the node type to decide if it can handle it
+The service objects store and process the result of parsing the input and
+where appropriate provide methods for other services to query that parsed information.
 
 The commodity model uses BigDecimal for currency calculations to avoid any
 floating point rounding errors. When displayed the big decimals are cast to
