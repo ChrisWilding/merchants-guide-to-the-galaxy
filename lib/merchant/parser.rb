@@ -74,7 +74,8 @@ module Merchant
       scanner.skip_until(NEWLINE_OR_EOS)
       ast << UnknownDefinitionOrQuery.new
     end
-     def parse_commodity_conversion
+
+    def parse_commodity_conversion
       scanner.skip(/how many /)
       from_commodity = scanner.scan_until(IS).chomp(IS.source)
       *galactic, to_commodity = scanner.scan_until(/\?/).chomp('?').split
@@ -82,6 +83,6 @@ module Merchant
         from_commodity, to_commodity, galactic.join(' ')
       )
       scanner.skip(NEWLINE_OR_EOS)
-     end
+    end
   end
 end
