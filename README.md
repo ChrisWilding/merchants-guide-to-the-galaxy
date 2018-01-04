@@ -2,7 +2,7 @@
 
 ## Setup
 
-Install ruby 2.4.0 using your ruby version manager of choice. Install the dependencies -
+Install ruby 2.5.0 using your ruby version manager of choice. Install the dependencies -
 ```sh
 $ bundle install
 ```
