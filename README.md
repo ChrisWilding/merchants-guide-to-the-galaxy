@@ -83,8 +83,8 @@ I have no idea what you are talking about
 
 ## Prerequisites
 
-1. Ruby 2.5.0
-1. Bundler 1.16.1
+1. [Ruby 2.5.0](https://www.ruby-lang.org/en/documentation/installation/)
+1. [Bundler 1.16.1](http://bundler.io/)
 
 ## Installation
 
