@@ -1,4 +1,4 @@
-# Merchant's Guide to the Galaxy
+# Merchant's Guide to the Galaxy [![Build Status](https://travis-ci.org/ChrisWilding/merchants-guide-to-the-galaxy.svg?branch=master)](https://travis-ci.org/ChrisWilding/merchants-guide-to-the-galaxy)
 
 You decided to give up on earth after the latest financial collapse left 99.99%
 of the earth's population with 0.01% of the wealth. Luckily, with the scant sum
