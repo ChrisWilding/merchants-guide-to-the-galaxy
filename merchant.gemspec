@@ -10,7 +10,6 @@ Gem::Specification.new do |spec|
   spec.email         = ['hello@chriswilding.co.uk']
 
   spec.summary       = 'Merchant\'s Guide to the Galaxy'
-  spec.homepage      = "TODO: Put your gem's website or public repo URL here."
 
   # Prevent pushing this gem to RubyGems.org. To allow pushes either set the
   # 'allowed_push_host' to allow pushing to a single host or delete this
